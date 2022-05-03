@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    background: rgb(219, 214, 203);
+}
+.new_item {
+    display: flex;
+    justify-content: end;
+}
+
+.btn {
+    margin-right: 2%;
+}
+
+.card {
+    width:50%;
+    height:40%;
+    margin-left: 20%;
+    margin-top: 10%;
+    background: darkgray;
+}
+
+.item {
+    font-size:20px;
+}
+

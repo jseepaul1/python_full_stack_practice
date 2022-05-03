@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <h1>Hello, {{user.name}}!</h1>
+            <div class="new_item">
+                <a href="/logout" class="btn btn-primary">Logout</a>
+                <a href='/new/item' class="btn btn-success">Add Item</a>
+            </div>
+        </div>
+
+        <h3>Your Wish List</h3>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Added By</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td><a href="/display/item/{{item.id}}">{{item.item}}</a></td>
+                    <td>{{user.name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td>
+                        <a href="/destroy/item/{{item.wishlist_id}}">Remove from my wishlist</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Other Users Wish List</h3>
+        <table class="table table-success table-striped">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Added By</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in other_user_wish_items %}
+                <tr>
+                    <td>{{item.item}}</td>
+                    <td>{{item.user_name}}</td>
+                    <td>{{item.created_at}}</td>
+                    <td>
+                        <form action='/create/wishlist' method="POST">
+                            <input type="hidden" name="user_id" value="{{user.id}}">
+                            <input type="hidden" name="item_id" value="{{item.id}}">
+                            <button type="submit" class="btn btn-primary">Add to wish list</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>

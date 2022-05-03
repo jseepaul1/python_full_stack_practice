@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+.Item {
+    font-size:20px;
+}
+
+.card {
+    width:70%;
+    height:40%;
+    margin: 10%;
+    padding:2%;
+}
+
+.wish-item {
+    display: flex;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+}
